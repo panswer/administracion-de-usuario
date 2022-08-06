@@ -1,0 +1,602 @@
+{
+	"info": {
+		"_postman_id": "aeae298e-987d-425d-9305-119624b540d1",
+		"name": "administrar usuarios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10140640"
+	},
+	"item": [
+		{
+			"name": "create an user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();",
+							"",
+							"if (response.ok) {",
+							"    pm.environment.set('userId', response.data.id);",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"panswer.rjmm@gmail.com\",\n    \"address\": \"my address\",\n    \"username\": \"ricardo10\",\n    \"firstname\": \"jose\",\n    \"lastname\": \"maiz\",\n    \"telephone\": \"+000 000-0000\",\n    \"birthday\": \"1997-04-09\",\n    \"userRole\": 2000,\n    \"password\": \"mypassword\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/user",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create an user",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"panswer.rjmm@gmail.com\",\n    \"address\": \"my address\",\n    \"username\": \"ricardo10\",\n    \"firstname\": \"jose\",\n    \"lastname\": \"maiz\",\n    \"telephone\": \"04242301518\",\n    \"birthday\": \"1997-04-09\",\n    \"userRole\": 2000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/user",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "content-length",
+							"value": "261"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 06 Aug 2022 01:15:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"ok\": true,\n    \"data\": {\n        \"email\": \"panswer.rjmm@gmail.com\",\n        \"address\": \"my address\",\n        \"username\": \"ricardo10\",\n        \"firstname\": \"jose\",\n        \"lastname\": \"maiz\",\n        \"telephone\": \"04242301518\",\n        \"birthday\": \"1997-04-09\",\n        \"userRole\": 2000,\n        \"active\": false,\n        \"id\": \"21e06a26-aeaa-478e-8024-82d6ad3551af\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get all users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}/user",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get all users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{HOST}}/user",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "content-length",
+							"value": "275"
+						},
+						{
+							"key": "accept-ranges",
+							"value": "bytes"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 06 Aug 2022 03:51:10 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"ok\": true,\n    \"data\": [\n        {\n            \"lastname\": \"mejias\",\n            \"active\": false,\n            \"userRole\": 1000,\n            \"firstname\": \"ricardo\",\n            \"username\": \"ricardoTest\",\n            \"address\": \"my new address\",\n            \"telephone\": \"+000 000-0000\",\n            \"email\": \"ricarod.jmm@gmail.com\",\n            \"id\": \"20a24d16-f877-46e2-89d7-1e6500c96fb4\",\n            \"birthday\": \"1997-04-09\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "get an user by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/user/:id",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"user",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{userId}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get an user by id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/user/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{userId}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "content-length",
+							"value": "273"
+						},
+						{
+							"key": "accept-ranges",
+							"value": "bytes"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 06 Aug 2022 03:52:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"ok\": true,\n    \"data\": {\n        \"lastname\": \"mejias\",\n        \"active\": false,\n        \"userRole\": 1000,\n        \"firstname\": \"ricardo\",\n        \"username\": \"ricardoTest\",\n        \"address\": \"my new address\",\n        \"telephone\": \"+000 000-0000\",\n        \"email\": \"ricarod.jmm@gmail.com\",\n        \"id\": \"20a24d16-f877-46e2-89d7-1e6500c96fb4\",\n        \"birthday\": \"1997-04-09\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "update an user by id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"ricarod.jmm@gmail.com\",\n    \"address\": \"my new address\",\n    \"username\": \"ricardoTest\",\n    \"firstname\": \"ricardo\",\n    \"lastname\": \"mejias\",\n    \"telephone\": \"+000 000-0000\",\n    \"birthday\": \"1997-04-09\",\n    \"userRole\": 1000,\n    \"password\": \"mypassword\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/user/:id",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"user",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{userId}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "update an user by id",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"ricarod.jmm@gmail.com\",\n    \"address\": \"my new address\",\n    \"username\": \"ricardoTest\",\n    \"firstname\": \"ricardo\",\n    \"lastname\": \"mejias\",\n    \"telephone\": \"+000 000-0000\",\n    \"birthday\": \"1997-04-09\",\n    \"userRole\": 1000,\n    \"password\": \"mypassword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/user/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{userId}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "content-length",
+							"value": "273"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 06 Aug 2022 03:44:44 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"ok\": true,\n    \"data\": {\n        \"lastname\": \"mejias\",\n        \"active\": false,\n        \"userRole\": 1000,\n        \"firstname\": \"ricardo\",\n        \"username\": \"ricardoTest\",\n        \"address\": \"my new address\",\n        \"telephone\": \"+000 000-0000\",\n        \"id\": \"20a24d16-f877-46e2-89d7-1e6500c96fb4\",\n        \"email\": \"ricarod.jmm@gmail.com\",\n        \"birthday\": \"1997-04-09\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "delete user by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ids\": [\"{{userId}}\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/user",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete user by id",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ids\": [\"{{userId}}\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/user",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "content-length",
+							"value": "62"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 06 Aug 2022 03:52:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"ok\": true,\n    \"deleted\": [\n        \"20a24d16-f877-46e2-89d7-1e6500c96fb4\"\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "sign in",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();",
+							"",
+							"if (response.ok) {",
+							"    pm.environment.set('TOKEN', response.token);",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"ricardoTest\",\n    \"password\": \"mypassword\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/sign/in",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sign",
+						"in"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "sign in",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"ricardoTest\",\n    \"password\": \"mypassword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/sign/in",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"sign",
+								"in"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "cache-control",
+							"value": "no-cache"
+						},
+						{
+							"key": "content-length",
+							"value": "598"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 06 Aug 2022 03:50:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"ok\": true,\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsYXN0bmFtZSI6Im1lamlhcyIsImFjdGl2ZSI6ZmFsc2UsInBhc3N3b3JkIjoiJDJhJDEwJC8wLzFMU2tuYW8zVG8zR3dYdk9KOS5VcTdXTHFFMUhMS3UuWGFyUEVMNmdReTZzbFV6TkZHIiwidXNlclJvbGUiOjEwMDAsImZpcnN0bmFtZSI6InJpY2FyZG8iLCJ1c2VybmFtZSI6InJpY2FyZG9UZXN0IiwiYWRkcmVzcyI6Im15IG5ldyBhZGRyZXNzIiwidGVsZXBob25lIjoiKzAwMCAwMDAtMDAwMCIsImVtYWlsIjoicmljYXJvZC5qbW1AZ21haWwuY29tIiwiaWQiOiIyMGEyNGQxNi1mODc3LTQ2ZTItODlkNy0xZTY1MDBjOTZmYjQiLCJiaXJ0aGRheSI6IjE5OTctMDQtMDkiLCJpYXQiOjE2NTk3NTc4MjUsImV4cCI6MTY1OTg0NDIyNX0.3SoxJ0p-4bwWszhqd5C8j1GHoLnuyDxStoDhg82VrA8\",\n    \"role\": 1000\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"value": "",
+			"type": "string"
+		}
+	]
+}

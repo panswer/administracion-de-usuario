@@ -1,0 +1,85 @@
+service: administration-user
+frameworkVersion: '3'
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource:
+        - arn:aws:dynamodb:us-east-1:990649845879:table/UsersTable
+functions:
+  hello:
+    handler: src/hello.handler
+    events:
+      - httpApi: GET /
+
+  createUser:
+    handler: src/createUser.handler
+    events:
+      - httpApi: POST /user
+
+  getUsers:
+    handler: src/getUsers.handler
+    events:
+      - httpApi:
+          path: /user
+          method: get
+  
+  getUser:
+    handler: src/getUser.handler
+    events:
+      - httpApi:
+          path: /user/{id}
+          method: get
+
+  updateUser:
+    handler: src/updateUser.handler
+    events:
+      - httpApi:
+          path: /user/{id}
+          method: put
+  
+  deleteUsers:
+    handler: src/deleteUser.handler
+    events:
+      - httpApi:
+          path: /user
+          method: delete
+
+  signIn:
+    handler: src/authSignIn.handler
+    events:
+      - httpApi:
+          path: /sign/in
+          method: post
+
+resources:
+  Resources:
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: UsersTable
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: username
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+
+custom:
+  esbuild:
+    bundle: true
+    minify: true
+
+plugins:
+  - serverless-esbuild
+  - serverless-offline
